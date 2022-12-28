@@ -15,7 +15,7 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
     <TextField fx:id="topic" text="Topic" minWidth="200" />
-    <Button text="Subscribe" onAction="#subscribe"/>
+    <Button text="Subscribe" onAction="#subscribe" style="-fx-background-color: black;-fx-text-fill: white;"/>
 </VBox>
 
 </AnchorPane>

@@ -20,7 +20,6 @@ import java.io.IOException;
 public class MQTTApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println("start called");
         FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt_client.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 240);
         stage.setTitle("MQTT");

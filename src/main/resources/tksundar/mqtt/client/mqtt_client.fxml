@@ -17,9 +17,9 @@
        </HBox>
        <HBox alignment="CENTER" prefWidth="100" >
 
-       <Button onAction="#connect" text="Connect" />
+       <Button onAction="#connect" text="Connect" style="-fx-background-color: black;-fx-text-fill: white;"/>
            <Label prefWidth="10"/>
-       <Button onAction="#disconnect" text="Disconnect"/>
+       <Button onAction="#disconnect" text="Disconnect" style="-fx-background-color: black;-fx-text-fill: white;"/>
        </HBox>
    </children>
 </VBox>

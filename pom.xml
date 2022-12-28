@@ -4,13 +4,19 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.example</groupId>
-    <artifactId>demo</artifactId>
+    <artifactId>mqtt-client</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>demo</name>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
     </properties>
+    <repositories>
+        <repository>
+            <id>maven-central</id>
+            <url>https://mvnrepository.com/artifact/</url>
+        </repository>
+    </repositories>
 <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
@@ -22,6 +28,23 @@
             <artifactId>javafx-fxml</artifactId>
             <version>19</version>
         </dependency>
+<!--    <dependency>-->
+<!--        <groupId>org.openjfx</groupId>-->
+<!--        <artifactId>javafx-web</artifactId>-->
+<!--        <version>19</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.openjfx</groupId>-->
+<!--        <artifactId>javafx-media</artifactId>-->
+<!--        <version>19</version>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--        <groupId>org.kordamp.bootstrapfx</groupId>-->
+<!--        <artifactId>bootstrapfx-core</artifactId>-->
+<!--        <version>0.4.0</version>-->
+<!--    </dependency>-->
+
+
     <dependency>
         <groupId>org.eclipse.paho</groupId>
         <artifactId>org.eclipse.paho.mqttv5.client</artifactId>

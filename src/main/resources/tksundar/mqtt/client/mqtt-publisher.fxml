@@ -14,5 +14,5 @@
     <TextField fx:id="topic" text="Topic" prefWidth="150"/>
     <TextField text="Message" prefWidth="200" fx:id="message"/>
 
-    <Button text="Publish" onAction="#publish"/>
+    <Button text="Publish" onAction="#publish" style="-fx-background-color: black;-fx-text-fill: white;"/>
 </VBox>

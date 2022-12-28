@@ -10,9 +10,9 @@
       fx:controller="tksundar.mqtt.client.PostConnectionController">
 
       <HBox alignment="CENTER" prefHeight="100" prefWidth="250">
-            <Button text="Publish" onAction="#openPublishScreen"/>
+            <Button text="Publish" onAction="#openPublishScreen" style="-fx-background-color: black;-fx-text-fill: white;"/>
             <Label prefWidth="50"/>
-            <Button  text="Subscribe" onAction="#openSubscribeScreen"/>
+            <Button  text="Subscribe" onAction="#openSubscribeScreen" style="-fx-background-color: black;-fx-text-fill: white;"/>
       </HBox>
 
 </VBox>
