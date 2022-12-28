@@ -8,9 +8,10 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.common.MqttException;
-import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
 import java.io.IOException;
+
+import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
 /**
  * Author : Sundar Krishnamachari
