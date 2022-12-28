@@ -49,6 +49,7 @@ public class MQTTApplicationController {
         System.out.println(mqttAddress);
         try {
              client = new MqttClient("tcp://"+mqttAddress, clientId);
+             client.setCallback(new SubCallBack());
             if (connect(client)) {
                 try {
                     showConfirmation();
