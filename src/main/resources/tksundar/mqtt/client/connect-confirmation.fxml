@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<?import javafx.scene.text.Text?>
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+      prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="tksundar.mqtt.client.PostConnectionController">
+
+      <HBox alignment="CENTER" prefHeight="100" prefWidth="250">
+         <children>
+            <Button text="Publish" onAction="#openPublishScreen"/>
+            <Label prefWidth="50"/>
+            <Button  text="Subscribe" onAction="#openSubscribeScreen"/>
+         </children>
+      </HBox>
+
+</VBox>

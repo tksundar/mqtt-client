@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.geometry.Insets?>
+
+<VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/8"
+      fx:controller="tksundar.mqtt.client.MqttPublisher">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+    <TextField fx:id="topic" text="Topic" prefWidth="150"/>
+    <TextField text="Message" prefWidth="200" fx:id="message"/>
+
+    <Button text="Publish" onAction="#publish"/>
+</VBox>
