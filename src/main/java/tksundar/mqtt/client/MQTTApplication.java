@@ -8,6 +8,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.common.MqttException;
+import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
 import java.io.IOException;
 
@@ -26,7 +27,7 @@ public class MQTTApplication extends Application {
         stage.setScene(scene);
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent ->{
             try {
-                IMqttClient client = MQTTApplicationController.getClient();
+                IMqttClient client = getClient();
                 if (client!=null && client.isConnected()){
                     client.disconnect();
                 }
