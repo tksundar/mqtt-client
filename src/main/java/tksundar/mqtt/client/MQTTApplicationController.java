@@ -14,7 +14,11 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-
+/**
+ * Author : Sundar Krishnamachari
+ * Created: 2022/12/28
+ * email: tksrajan@gmail.com
+ */
 public class MQTTApplicationController {
 
     private static IMqttClient client;

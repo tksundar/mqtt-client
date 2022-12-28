@@ -1,3 +1,4 @@
+
 package tksundar.mqtt.client;
 
 import javafx.application.Application;
@@ -10,7 +11,11 @@ import org.eclipse.paho.mqttv5.common.MqttException;
 
 import java.io.IOException;
 
-
+/**
+ * Author : Sundar Krishnamachari
+ * Created: 2022/12/28
+ * email: tksrajan@gmail.com
+ */
 public class MQTTApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
