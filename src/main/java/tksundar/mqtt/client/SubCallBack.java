@@ -13,6 +13,8 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
  * email: tksrajan@gmail.com
  */
 public class SubCallBack implements MqttCallback {
+
+
     @Override
     public void disconnected(MqttDisconnectResponse mqttDisconnectResponse) {
 
@@ -25,7 +27,9 @@ public class SubCallBack implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
+        System.out.println("Calling thread "+Thread.currentThread().getId());
         System.out.printf("\nReceived message %s on Topic %s", mqttMessage.toString(), s);
+        System.out.println();
     }
 
     @Override

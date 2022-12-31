@@ -16,9 +16,4 @@ public class MqttSubscriber {
     private TextField topic;
 
 
-    public void subscribe() throws MqttException {
-        System.out.println("subscribing to topic "+topic.getText());
-        getClient().subscribe(topic.getText(),0);
-
-    }
 }

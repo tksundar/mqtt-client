@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="tksundar.mqtt.client.MqttSubscriber"
+            fx:controller="tksundar.mqtt.client.PublishController"
             prefHeight="400.0" prefWidth="600.0">
 <VBox alignment="CENTER"  prefHeight="200.0" prefWidth="200.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1"
       xmlns="http://javafx.com/javafx/8">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <TextField fx:id="topic" text="Topic" minWidth="200" />
+    <TextField fx:id="subTopic" text="Topic" minWidth="200" />
     <Button text="Subscribe" onAction="#subscribe" style="-fx-background-color: black;-fx-text-fill: white;"/>
 </VBox>
 

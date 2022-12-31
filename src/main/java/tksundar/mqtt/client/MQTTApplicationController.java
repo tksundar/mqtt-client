@@ -3,7 +3,11 @@ package tksundar.mqtt.client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.client.MqttClient;
@@ -14,6 +18,7 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+
 /**
  * Author : Sundar Krishnamachari
  * Created: 2022/12/28
@@ -21,23 +26,32 @@ import java.net.UnknownHostException;
  */
 public class MQTTApplicationController {
 
+
+
     private static IMqttClient client;
 
     private String clientId;
 
+    @FXML
+    private Label title;
+
+    @FXML
+    private Button connectButton;
+    @FXML
+    private Menu choose;
 
     @FXML
     private TextField brokerAddress;
 
 
-    public static IMqttClient getClient(){
+    public static IMqttClient getClient() {
         return client;
     }
 
-    public MQTTApplicationController(){
+    public MQTTApplicationController() {
         try {
             this.clientId = getMacAddress();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println("exception getting mac address. Using classname for clientId");
             this.clientId = getClass().getCanonicalName();
         }
@@ -48,34 +62,25 @@ public class MQTTApplicationController {
         String mqttAddress = brokerAddress.getText();
         System.out.println(mqttAddress);
         try {
-             client = new MqttClient("tcp://"+mqttAddress, clientId);
-             client.setCallback(new SubCallBack());
+            client = new MqttClient("tcp://" + mqttAddress, clientId);
+            client.setCallback(new SubCallBack());
             if (connect(client)) {
-                try {
-                    showConfirmation();
-                }catch(IOException ioe){
-                    System.out.println(ioe.getMessage());
-                }
+               choose.setDisable(false);
+                connectButton.setDisable(true);
+                title.setText("Connected");
             }
         } catch (MqttException mqe) {
             throw new RuntimeException(mqe);
         }
     }
+
+
     @FXML
     protected void disconnect() throws MqttException {
-        if (client !=null && client.isConnected()){
+        if (client != null && client.isConnected()) {
             client.disconnect();
             System.exit(0);
         }
-    }
-
-    private void showConfirmation() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("connect-confirmation.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 50);
-        Stage stage = new Stage();
-        stage.setTitle("Connected");
-        stage.setScene(scene);
-        stage.show();
     }
 
     public boolean connect(final IMqttClient client) {
@@ -101,5 +106,27 @@ public class MQTTApplicationController {
         }
         return String.join("-", hexadecimal);
 
+    }
+
+
+    @FXML
+    public void openPublishScreen() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt-publisher.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300, 500);
+        Stage stage = new Stage();
+        stage.setTitle("Publish");
+        stage.setScene(scene);
+        stage.show();
+
+    }
+
+    @FXML
+    public void openSubscribeScreen() throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt-subscriber.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 300, 200);
+        Stage stage = new Stage();
+        stage.setTitle("Subscribe");
+        stage.setScene(scene);
+        stage.show();
     }
 }

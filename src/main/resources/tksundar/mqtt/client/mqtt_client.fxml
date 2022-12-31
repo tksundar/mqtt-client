@@ -6,20 +6,52 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<VBox alignment="CENTER" prefHeight="228.0" prefWidth="398.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1"
+<?import com.sun.javafx.scene.control.ContextMenuContent.MenuBox?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuBar?>
+<?import com.sun.javafx.scene.control.ContextMenuContent.ArrowMenuItem?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<VBox fx:id="root" alignment="CENTER_LEFT" prefHeight="228.0" prefWidth="398.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1"
       xmlns="http://javafx.com/javafx/8" fx:controller="tksundar.mqtt.client.MQTTApplicationController">
     <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+        <Insets bottom="20.0" left="20.0" right="20.0"/>
     </padding>
-   <children>
-       <HBox prefWidth="200"  alignment="CENTER">
-              <TextField text="Enter Broker URL" fx:id="brokerAddress" alignment="CENTER" prefHeight="25.0"  />
-       </HBox>
-       <HBox alignment="CENTER" prefWidth="100" >
 
-       <Button onAction="#connect" text="Connect" style="-fx-background-color: black;-fx-text-fill: white;"/>
+    <MenuBar>
+        <Menu text="Choose Action" disable="true" fx:id="choose">
+            <MenuItem text="publish" fx:id="publish" onAction="#openPublishScreen" />
+            <MenuItem text="subscribe" fx:id="subscribe" onAction="#openSubscribeScreen" />
+        </Menu>
+    </MenuBar>
+    <Label text="Connect to broker" fx:id="title" />
+    <children>
+        <HBox prefWidth="200" alignment="CENTER">
+            <Label text="Broker URL: "/>
+            <TextField text="test.mosquitto.org" fx:id="brokerAddress"  prefHeight="25.0"
+            style="-fx-prompt-text-fill:red;"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <Label text="Broker Port: "/>
+            <TextField text="1833" fx:id="port" prefHeight="25"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <Label text="User Name: "/>
+            <TextField fx:id="userName" prefHeight="25.0"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <Label text="Password: "/>
+            <TextField fx:id="password" prefHeight="25.0"/>
+        </HBox>
+
+        <HBox alignment="CENTER" prefWidth="100">
+            <padding>
+            <Insets left="60" />
+        </padding>
+       <Button onAction="#connect"  fx:id="connectButton" text="Connect" style="-fx-background-color: black;-fx-text-fill: white;"/>
            <Label prefWidth="10"/>
        <Button onAction="#disconnect" text="Disconnect" style="-fx-background-color: black;-fx-text-fill: white;"/>
        </HBox>
    </children>
+
 </VBox>

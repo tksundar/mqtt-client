@@ -22,8 +22,8 @@ public class MQTTApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt_client.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("MQTT");
+        Scene scene = new Scene(fxmlLoader.load(), 520, 340);
+        stage.setTitle("mqtt client");
         stage.setScene(scene);
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent ->{
             try {
@@ -41,6 +41,8 @@ public class MQTTApplication extends Application {
     }
 
     public static void main(String[] args) {
+
+        System.out.println("Main thread "+Thread.currentThread().getId());
         launch();
     }
 }
