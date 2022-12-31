@@ -17,6 +17,10 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.logging.Logger;
+
+import static tksundar.mqtt.client.util.Commons.LoggerType;
+import static tksundar.mqtt.client.util.Commons.getLogger;
 
 /**
  * Author : Sundar Krishnamachari
@@ -25,7 +29,8 @@ import java.net.UnknownHostException;
  */
 public class MQTTApplicationController {
 
-
+    private static final Logger LOGGER = getLogger(MQTTApplicationController.class.getName(),
+            LoggerType.CONSOLE, LoggerType.FILE);
 
     private static IMqttClient client;
 
@@ -51,7 +56,7 @@ public class MQTTApplicationController {
         try {
             this.clientId = getMacAddress();
         } catch (Exception e) {
-            System.out.println("exception getting mac address. Using classname for clientId");
+            LOGGER.info("exception getting mac address. Using classname for clientId");
             this.clientId = getClass().getCanonicalName();
         }
     }
@@ -59,12 +64,12 @@ public class MQTTApplicationController {
     @FXML
     protected void connect() {
         String mqttAddress = brokerAddress.getText();
-        System.out.println(mqttAddress);
+        LOGGER.info(mqttAddress);
         try {
             client = new MqttClient("tcp://" + mqttAddress, clientId);
             client.setCallback(new SubCallBack());
             if (connect(client)) {
-               choose.setDisable(false);
+                choose.setDisable(false);
                 connectButton.setDisable(true);
                 title.setText("Connected");
             }
@@ -88,7 +93,7 @@ public class MQTTApplicationController {
             client.connect();
             retVal = true;
         } catch (MqttException e) {
-            System.out.println(e.getMessage());
+            LOGGER.info(e.getMessage());
             retVal = false;
         }
 

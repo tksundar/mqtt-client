@@ -9,6 +9,9 @@ import org.eclipse.paho.mqttv5.client.MqttDisconnectResponse;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
+import tksundar.mqtt.client.util.Commons;
+
+import java.util.logging.Logger;
 
 import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
@@ -18,7 +21,8 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * email: tksrajan@gmail.com
  */
 public class SubCallBack implements MqttCallback {
-
+    private static final Logger LOGGER = Commons.getLogger(SubCallBack.class.getName(),
+            Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     private static TextArea copy;
 
     @FXML
@@ -27,15 +31,14 @@ public class SubCallBack implements MqttCallback {
     @FXML
     private TextArea received;
 
-    private final StringBuffer buffer=new StringBuffer();
+    private final StringBuffer buffer = new StringBuffer();
 
 
     @FXML
     public void subscribe() throws MqttException {
-        System.out.println("subscribing to topic " + topic.getText()+"\n");
+        LOGGER.info("subscribing to topic " + topic.getText() + "\n");
         getClient().subscribe(topic.getText(), 0);
         copy = received;
-        System.out.println(copy+" "+received);
     }
 
     @Override

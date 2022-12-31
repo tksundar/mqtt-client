@@ -11,7 +11,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.8.2</junit.version>
     </properties>
-<dependencies>
+    <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
@@ -22,38 +22,37 @@
             <artifactId>javafx-fxml</artifactId>
             <version>19</version>
         </dependency>
-<!--    <dependency>-->
-<!--        <groupId>org.openjfx</groupId>-->
-<!--        <artifactId>javafx-web</artifactId>-->
-<!--        <version>19</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--        <groupId>org.openjfx</groupId>-->
-<!--        <artifactId>javafx-media</artifactId>-->
-<!--        <version>19</version>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--        <groupId>org.kordamp.bootstrapfx</groupId>-->
-<!--        <artifactId>bootstrapfx-core</artifactId>-->
-<!--        <version>0.4.0</version>-->
-<!--    </dependency>-->
+        <!--    <dependency>-->
+        <!--        <groupId>org.openjfx</groupId>-->
+        <!--        <artifactId>javafx-web</artifactId>-->
+        <!--        <version>19</version>-->
+        <!--    </dependency>-->
+        <!--    <dependency>-->
+        <!--        <groupId>org.openjfx</groupId>-->
+        <!--        <artifactId>javafx-media</artifactId>-->
+        <!--        <version>19</version>-->
+        <!--    </dependency>-->
+        <!--    <dependency>-->
+        <!--        <groupId>org.kordamp.bootstrapfx</groupId>-->
+        <!--        <artifactId>bootstrapfx-core</artifactId>-->
+        <!--        <version>0.4.0</version>-->
+        <!--    </dependency>-->
 
 
-    <dependency>
-        <groupId>org.eclipse.paho</groupId>
-        <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
-        <version>1.2.5</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3 -->
-    <!--dependency>
-        <groupId>org.eclipse.paho</groupId>
-        <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-        <version>1.2.5</version>
-    </dependency-->
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.mqttv5.client</artifactId>
+            <version>1.2.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.eclipse.paho/org.eclipse.paho.client.mqttv3 -->
+        <!--dependency>
+            <groupId>org.eclipse.paho</groupId>
+            <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
+            <version>1.2.5</version>
+        </dependency-->
 
 
-
-    <dependency>
+        <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
             <version>${junit.version}</version>
@@ -65,7 +64,7 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-</dependencies>
+    </dependencies>
     <build>
         <plugins>
             <plugin>

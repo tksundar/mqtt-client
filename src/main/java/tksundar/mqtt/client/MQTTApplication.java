@@ -1,4 +1,3 @@
-
 package tksundar.mqtt.client;
 
 import javafx.application.Application;
@@ -25,24 +24,24 @@ public class MQTTApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 520, 340);
         stage.setTitle("mqtt client");
         stage.setScene(scene);
-        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent ->{
+        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> {
             try {
                 IMqttClient client = getClient();
-                if (client!=null && client.isConnected()){
+                if (client != null && client.isConnected()) {
                     client.disconnect();
                 }
             } catch (MqttException e) {
                 throw new RuntimeException(e);
             }
             System.exit(0);
-        } );
+        });
         stage.show();
 
     }
 
     public static void main(String[] args) {
 
-        System.out.println("Main thread "+Thread.currentThread().getId());
+        System.out.println("Main thread " + Thread.currentThread().getId());
         launch();
     }
 }

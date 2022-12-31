@@ -5,6 +5,9 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
+import tksundar.mqtt.client.util.Commons;
+
+import java.util.logging.Logger;
 
 import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
@@ -14,7 +17,8 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * email: tksrajan@gmail.com
  */
 public class PublishController {
-
+    private static final Logger LOGGER = Commons.getLogger(PublishController.class.getName(),
+            Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     @FXML
     private TextArea published;
 
@@ -24,12 +28,12 @@ public class PublishController {
     @FXML
     private TextField message;
 
-    private final StringBuffer buffer=new StringBuffer();
+    private final StringBuffer buffer = new StringBuffer();
 
 
     public void publish() throws MqttException {
-        System.out.println("publishing to topic "+topic.getText()+" message "+message.getText());
-        getClient().publish(topic.getText(),new MqttMessage(message.getText().getBytes()));
+        LOGGER.info("publishing to topic " + topic.getText() + " message " + message.getText());
+        getClient().publish(topic.getText(), new MqttMessage(message.getText().getBytes()));
         buffer.append(message.getText()).append("\n");
         published.setText(buffer.toString());
     }
