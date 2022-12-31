@@ -1,11 +1,16 @@
 package tksundar.mqtt.client;
 
+import javafx.fxml.FXML;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.client.IMqttToken;
 import org.eclipse.paho.mqttv5.client.MqttCallback;
 import org.eclipse.paho.mqttv5.client.MqttDisconnectResponse;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
+
+import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
 /**
  * Author : Sundar Krishnamachari
@@ -14,6 +19,24 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
  */
 public class SubCallBack implements MqttCallback {
 
+    private static TextArea copy;
+
+    @FXML
+    private TextField topic;
+
+    @FXML
+    private TextArea received;
+
+    private final StringBuffer buffer=new StringBuffer();
+
+
+    @FXML
+    public void subscribe() throws MqttException {
+        System.out.println("subscribing to topic " + topic.getText()+"\n");
+        getClient().subscribe(topic.getText(), 0);
+        copy = received;
+        System.out.println(copy+" "+received);
+    }
 
     @Override
     public void disconnected(MqttDisconnectResponse mqttDisconnectResponse) {
@@ -27,9 +50,10 @@ public class SubCallBack implements MqttCallback {
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
-        System.out.println("Calling thread "+Thread.currentThread().getId());
-        System.out.printf("\nReceived message %s on Topic %s", mqttMessage.toString(), s);
-        System.out.println();
+        String msg = mqttMessage.toString();
+        System.out.printf("\nReceived message %s on Topic %s", msg, s);
+        buffer.append(msg).append("\n");
+        copy.setText(buffer.toString());
     }
 
     @Override
