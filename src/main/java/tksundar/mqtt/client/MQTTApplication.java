@@ -40,8 +40,6 @@ public class MQTTApplication extends Application {
     }
 
     public static void main(String[] args) {
-
-        System.out.println("Main thread " + Thread.currentThread().getId());
         launch();
     }
 }

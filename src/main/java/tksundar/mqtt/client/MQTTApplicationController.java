@@ -17,6 +17,8 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static tksundar.mqtt.client.util.Commons.LoggerType;
@@ -29,8 +31,10 @@ import static tksundar.mqtt.client.util.Commons.getLogger;
  */
 public class MQTTApplicationController {
 
+    private final Map<String,IMqttClient> clients = new HashMap<>();
+
     private static final Logger LOGGER = getLogger(MQTTApplicationController.class.getName(),
-            LoggerType.CONSOLE, LoggerType.FILE);
+            LoggerType.CONSOLE);
 
     private static IMqttClient client;
 
@@ -46,6 +50,9 @@ public class MQTTApplicationController {
 
     @FXML
     private TextField brokerAddress;
+
+    @FXML
+    private TextField port;
 
 
     public static IMqttClient getClient() {
@@ -64,11 +71,17 @@ public class MQTTApplicationController {
     @FXML
     protected void connect() {
         String mqttAddress = brokerAddress.getText();
-        LOGGER.info("Connected to broker "+mqttAddress);
+        String serverUrl = "tcp://"+mqttAddress+":"+port.getText();
+        if(clients.containsKey(serverUrl)){
+            LOGGER.info("Already connected to "+serverUrl);
+            return;
+        }
         try {
-            client = new MqttClient("tcp://" + mqttAddress, clientId);
+            client = new MqttClient(serverUrl, clientId);
             client.setCallback(new SubCallBack());
-            if (connect(client)) {
+            if ( connect(client)) {
+                LOGGER.info("Connected to broker "+serverUrl);
+                clients.putIfAbsent(serverUrl,client);
                 choose.setDisable(false);
                 connectButton.setDisable(true);
                 title.setText("Connected");

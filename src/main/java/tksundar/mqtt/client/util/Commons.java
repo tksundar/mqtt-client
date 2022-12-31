@@ -19,12 +19,14 @@ public class Commons {
         for (LoggerType type : types) {
             switch (type) {
                 case CONSOLE -> {
+                    COMMONS_LOGGER.fine("setting console logger");
                     Handler handler = new ConsoleHandler();
                     handler.setFormatter(new SimpleFormatter());
                     logger.addHandler(handler);
                 }
                 case FILE -> {
-                    Handler handler = null;
+                    COMMONS_LOGGER.fine("setting file logger");
+                    Handler handler ;
                     try {
                         handler = new FileHandler("mqtt.log");
                     } catch (IOException e) {

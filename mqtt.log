@@ -1,0 +1,6 @@
+Dec 31, 2022 5:46:47 PM tksundar.mqtt.client.SubCallBack subscribe
+INFO: subscribing to topic Topic
+
+Dec 31, 2022 5:46:47 PM tksundar.mqtt.client.SubCallBack messageArrived
+INFO: 
+Received message ggh on Topic Topic

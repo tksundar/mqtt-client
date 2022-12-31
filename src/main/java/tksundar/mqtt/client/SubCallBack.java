@@ -21,7 +21,7 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * email: tksrajan@gmail.com
  */
 public class SubCallBack implements MqttCallback {
-    private static final Logger LOGGER = Commons.getLogger(SubCallBack.class.getName(),
+    private final Logger LOGGER = Commons.getLogger(SubCallBack.class.getName(),
             Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     private static TextArea copy;
 
@@ -54,7 +54,7 @@ public class SubCallBack implements MqttCallback {
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
         String msg = mqttMessage.toString();
-        System.out.printf("\nReceived message %s on Topic %s", msg, s);
+        LOGGER.info(String.format("\nReceived message %s on Topic %s", msg, s));
         buffer.append(msg).append("\n");
         copy.setText(buffer.toString());
     }
