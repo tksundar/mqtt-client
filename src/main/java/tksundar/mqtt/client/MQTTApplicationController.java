@@ -64,7 +64,7 @@ public class MQTTApplicationController {
     @FXML
     protected void connect() {
         String mqttAddress = brokerAddress.getText();
-        LOGGER.info(mqttAddress);
+        LOGGER.info("Connected to broker "+mqttAddress);
         try {
             client = new MqttClient("tcp://" + mqttAddress, clientId);
             client.setCallback(new SubCallBack());
