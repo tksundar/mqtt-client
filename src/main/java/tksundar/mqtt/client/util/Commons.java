@@ -60,7 +60,6 @@ public class Commons {
                                         new RuntimeException("Could not create dir"));
                             }
                         }
-                        System.out.println(homeDir + fileSeparator + logFileLocation + fileSeparator + "mqtt.log");
                         handler = new FileHandler(homeDir + fileSeparator + logFileLocation + fileSeparator + "mqtt.log");
                         handler.setFormatter(new SimpleFormatter());
                         logger.addHandler(handler);
