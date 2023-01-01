@@ -3,12 +3,8 @@ package tksundar.mqtt.client;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import org.eclipse.paho.mqttv5.client.IMqttToken;
-import org.eclipse.paho.mqttv5.client.MqttCallback;
-import org.eclipse.paho.mqttv5.client.MqttDisconnectResponse;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
-import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
 import tksundar.mqtt.client.util.Commons;
 
 import java.util.logging.Logger;
@@ -20,7 +16,7 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class Subscriber implements MqttCallback {
+public class Subscriber extends SubscriberBase {
     private final Logger LOGGER = Commons.getLogger(Subscriber.class.getName(),
             Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     private static TextArea copy;
@@ -42,16 +38,6 @@ public class Subscriber implements MqttCallback {
     }
 
     @Override
-    public void disconnected(MqttDisconnectResponse mqttDisconnectResponse) {
-
-    }
-
-    @Override
-    public void mqttErrorOccurred(MqttException e) {
-
-    }
-
-    @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
         String msg = mqttMessage.toString();
         LOGGER.info(String.format("\nReceived message %s on Topic %s", msg, s));
@@ -59,18 +45,4 @@ public class Subscriber implements MqttCallback {
         copy.setText(buffer.toString());
     }
 
-    @Override
-    public void deliveryComplete(IMqttToken iMqttToken) {
-
-    }
-
-    @Override
-    public void connectComplete(boolean b, String s) {
-
-    }
-
-    @Override
-    public void authPacketArrived(int i, MqttProperties mqttProperties) {
-
-    }
 }
