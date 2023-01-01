@@ -24,22 +24,25 @@ public class MQTTApplication extends Application {
         Scene scene = new Scene(fxmlLoader.load(), 520, 340);
         stage.setTitle("mqtt client");
         stage.setScene(scene);
-        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> {
-            try {
-                IMqttClient client = getClient();
-                if (client != null && client.isConnected()) {
-                    client.disconnect();
-                }
-            } catch (MqttException e) {
-                throw new RuntimeException(e);
-            }
-            System.exit(0);
-        });
+        stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> closeWindowAndExit());
         stage.show();
 
     }
 
+    private static void closeWindowAndExit(){
+        try {
+            IMqttClient client = getClient();
+            if (client != null && client.isConnected()) {
+                client.disconnect();
+                System.exit(0);
+            }
+        } catch (MqttException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
