@@ -78,7 +78,7 @@ public class MQTTApplicationController {
         }
         try {
             client = new MqttClient(serverUrl, clientId);
-            client.setCallback(new SubCallBack());
+            client.setCallback(new Subscriber());
             if ( connect(client)) {
                 LOGGER.info("Connected to broker "+serverUrl);
                 clients.putIfAbsent(serverUrl,client);

@@ -16,8 +16,8 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class PublishController {
-    private final Logger LOGGER = Commons.getLogger(PublishController.class.getName(),
+public class Publisher {
+    private final Logger LOGGER = Commons.getLogger(Publisher.class.getName(),
             Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     @FXML
     private TextArea published;

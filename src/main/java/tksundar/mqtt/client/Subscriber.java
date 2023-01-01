@@ -20,8 +20,8 @@ import static tksundar.mqtt.client.MQTTApplicationController.getClient;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class SubCallBack implements MqttCallback {
-    private final Logger LOGGER = Commons.getLogger(SubCallBack.class.getName(),
+public class Subscriber implements MqttCallback {
+    private final Logger LOGGER = Commons.getLogger(Subscriber.class.getName(),
             Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
     private static TextArea copy;
 
