@@ -3,7 +3,6 @@ package tksundar.mqtt.client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.TextField;
@@ -17,10 +16,9 @@ import java.net.InetAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
 import java.net.UnknownHostException;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
+import static java.lang.String.format;
 import static tksundar.mqtt.client.util.Commons.LoggerType;
 import static tksundar.mqtt.client.util.Commons.getLogger;
 
@@ -31,25 +29,22 @@ import static tksundar.mqtt.client.util.Commons.getLogger;
  */
 public class MQTTApplicationController {
 
-    private final Map<String,IMqttClient> clients = new HashMap<>();
-
-    private static final Logger LOGGER = getLogger(MQTTApplicationController.class.getName(),
-            LoggerType.CONSOLE);
+    private static final String clientId = getMacAddress();
 
     private static IMqttClient client;
 
-    private String clientId;
+    private static final Logger LOGGER = getLogger(MQTTApplicationController.class.getName(),
+            LoggerType.CONSOLE);
 
     @FXML
     private Label title;
 
     @FXML
-    private Button connectButton;
-    @FXML
     private Menu choose;
 
     @FXML
     private TextField brokerAddress;
+
 
     @FXML
     private TextField port;
@@ -59,64 +54,49 @@ public class MQTTApplicationController {
         return client;
     }
 
-    public MQTTApplicationController() {
-        try {
-            this.clientId = getMacAddress();
-        } catch (Exception e) {
-            LOGGER.info("exception getting mac address. Using classname for clientId");
-            this.clientId = getClass().getCanonicalName();
-        }
-    }
-
     @FXML
     protected void connect() {
         String mqttAddress = brokerAddress.getText();
-        String serverUrl = "tcp://"+mqttAddress+":"+port.getText();
-        if(clients.containsKey(serverUrl)){
-            LOGGER.info("Already connected to "+serverUrl);
-            return;
-        }
-        try {
-            client = new MqttClient(serverUrl, clientId);
-            client.setCallback(new Subscriber());
-            if ( connect(client)) {
-                LOGGER.info("Connected to broker "+serverUrl);
-                clients.putIfAbsent(serverUrl,client);
-                choose.setDisable(false);
-                connectButton.setDisable(true);
-                title.setText("Connected");
-            }
-        } catch (MqttException mqe) {
-            throw new RuntimeException(mqe);
-        }
+        String serverUrl = "tcp://" + mqttAddress + ":" + port.getText();
+        connect(serverUrl);
     }
 
 
     @FXML
-    protected void disconnect() throws MqttException {
-        if (client != null && client.isConnected()) {
-            client.disconnect();
-            System.exit(0);
-        }
+    protected void disconnect()  {
+       doDisconnect();
     }
 
-    public boolean connect(final IMqttClient client) {
-        boolean retVal;
+    public void connect(String url) {
+        if(client!=null){
+            LOGGER.info("Already connected");
+            return;
+        }
         try {
+            client = new MqttClient(url,clientId);
+            client.setCallback(new Subscriber());
             client.connect();
-            retVal = true;
-        } catch (MqttException e) {
-            LOGGER.info(e.getMessage());
-            retVal = false;
-        }
+            LOGGER.info(format("Connected to broker %s",url));
+            choose.setDisable(false);
+            //connectButton.setDisable(true);
+            title.setText("Connected");
 
-        return retVal;
+        } catch (MqttException e) {
+           LOGGER.throwing(MQTTApplicationController.class.getName(),
+                   "connect",new RuntimeException(e));
+
+        }
     }
 
-    private static String getMacAddress() throws UnknownHostException, SocketException {
-        InetAddress localHost = InetAddress.getLocalHost();
-        NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
-        byte[] hardwareAddress = ni.getHardwareAddress();
+    private static String getMacAddress()  {
+        byte[] hardwareAddress;
+        try {
+            InetAddress localHost = InetAddress.getLocalHost();
+            NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
+            hardwareAddress = ni.getHardwareAddress();
+        } catch (UnknownHostException | SocketException e) {
+            throw new RuntimeException(e);
+        }
         String[] hexadecimal = new String[hardwareAddress.length];
         for (int i = 0; i < hardwareAddress.length; i++) {
             hexadecimal[i] = String.format("%02X", hardwareAddress[i]);
@@ -145,5 +125,18 @@ public class MQTTApplicationController {
         stage.setTitle("Subscribe");
         stage.setScene(scene);
         stage.show();
+    }
+
+    public static void doDisconnect(){
+        if (client != null && client.isConnected()) {
+            try {
+                client.disconnect();
+            } catch (MqttException e) {
+                throw new RuntimeException(e);
+            }
+            LOGGER.info(format("Disconnected from %s",client.getServerURI()));
+            client = null;
+
+        }
     }
 }

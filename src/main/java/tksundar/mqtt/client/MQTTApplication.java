@@ -6,10 +6,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
-import org.eclipse.paho.mqttv5.common.MqttException;
 
 import java.io.IOException;
 
+import static tksundar.mqtt.client.MQTTApplicationController.doDisconnect;
 import static tksundar.mqtt.client.MQTTApplicationController.getClient;
 
 /**
@@ -30,14 +30,10 @@ public class MQTTApplication extends Application {
     }
 
     private static void closeWindowAndExit(){
-        try {
-            IMqttClient client = getClient();
-            if (client != null && client.isConnected()) {
-                client.disconnect();
-                System.exit(0);
-            }
-        } catch (MqttException e) {
-            throw new RuntimeException(e);
+        IMqttClient client = getClient();
+        if (client != null && client.isConnected()) {
+           doDisconnect();
+            System.exit(0);
         }
 
     }
