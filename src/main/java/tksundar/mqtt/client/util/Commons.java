@@ -20,6 +20,9 @@ public class Commons {
 
     private static final String fileSeparator = File.separator;
 
+
+    public enum LoggerType {CONSOLE, FILE}
+
     private static ResourceBundle getBundle() {
         ResourceBundle bundle;
         try {
@@ -31,19 +34,19 @@ public class Commons {
         return bundle;
     }
 
-    public enum LoggerType {CONSOLE, FILE}
 
     public static Logger getLogger(String loggerName, LoggerType... types) {
         Logger logger = Logger.getLogger(loggerName);
         for (LoggerType type : types) {
             switch (type) {
-                case CONSOLE -> {
+                case CONSOLE: {
                     COMMONS_LOGGER.fine("setting console logger");
                     Handler handler = new ConsoleHandler();
                     handler.setFormatter(new SimpleFormatter());
                     logger.addHandler(handler);
+                    break;
                 }
-                case FILE -> {
+                case FILE: {
                     COMMONS_LOGGER.fine("setting file logger");
                     Handler handler;
                     try {
@@ -67,9 +70,9 @@ public class Commons {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-
+                        break;
                 }
-                default -> COMMONS_LOGGER.warning("Unexpected value: " + type);
+                default: COMMONS_LOGGER.warning("Unexpected value: " + type);
             }
         }
         return logger;

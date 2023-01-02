@@ -16,7 +16,7 @@
 <!--            <MenuItem text="subscribe" onAction="#openSubscribeScreen"/>-->
 <!--        </Menu>-->
 <!--    </MenuBar>-->
-    <HBox alignment="TOP_LEFT">
+    <HBox>
         <padding>
             <Insets top="20.0"  right="20.0"/>
         </padding>
@@ -44,11 +44,11 @@
         <TextField prefHeight="25.0"/>
     </HBox>
 
-    <HBox alignment="CENTER" prefWidth="100">
+    <HBox alignment="CENTER" prefWidth="100" >
         <padding>
             <Insets left="60"/>
         </padding>
-        <Button onAction="#connect" fx:id="connectButton" text="Connect"
+        <Button onAction="#connect"  text="Connect"
                 style="-fx-background-color: black;-fx-text-fill: white;"/>
         <Label prefWidth="10"/>
         <Button onAction="#disconnect" text="Disconnect" style="-fx-background-color: black;-fx-text-fill: white;"/>
