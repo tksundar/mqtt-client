@@ -10,8 +10,8 @@ import org.eclipse.paho.mqttv5.client.IMqttClient;
 
 import java.io.IOException;
 
-import static tksundar.mqtt.client.MQTTApplicationController.doDisconnect;
-import static tksundar.mqtt.client.MQTTApplicationController.getClient;
+import static tksundar.mqtt.client.ConnectionController.doDisconnect;
+import static tksundar.mqtt.client.ConnectionController.getClient;
 
 /**
  * Author : Sundar Krishnamachari
@@ -23,7 +23,7 @@ public class MQTTApplication extends Application {
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt_client.fxml"));
         VBox content = fxmlLoader.load();
-        Scene scene = new Scene(content, 520, 340);
+        Scene scene = new Scene(content);
         stage.setTitle("mqtt client");
         stage.setScene(scene);
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> closeWindowAndExit());

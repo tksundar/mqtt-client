@@ -13,7 +13,8 @@
     <TextField fx:id="topic" text="Topic" prefWidth="150"/>
     <TextField text="Message" prefWidth="200" fx:id="message"/>
 
-    <Button text="Publish" onAction="#publish" style="-fx-background-color: black;-fx-text-fill: white;"/>
+    <Button text="Publish"  onAction="#publish"
+            style="-fx-background-color: black;-fx-text-fill: white;"/>
     <Label/>
     <TextArea text="Published Messages" fx:id="published" prefHeight="150"/>
 </VBox>

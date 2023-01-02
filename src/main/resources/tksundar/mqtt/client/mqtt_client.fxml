@@ -3,56 +3,23 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<VBox alignment="CENTER_LEFT" prefHeight="228.0" prefWidth="398.0" spacing="20.0"
+<VBox alignment="TOP_CENTER" prefHeight="300" prefWidth="400" spacing="20.0"
       xmlns:fx="http://javafx.com/fxml/1"
-      xmlns="http://javafx.com/javafx/8" fx:controller="tksundar.mqtt.client.MQTTApplicationController">
+      xmlns="http://javafx.com/javafx/8" fx:controller="tksundar.mqtt.client.MQTTApplicationController" >
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0"/>
     </padding>
-
-<!--    <MenuBar>-->
-<!--        <Menu text="Choose Action" disable="true" fx:id="choose">-->
-<!--            <MenuItem text="publish" onAction="#openPublishScreen"/>-->
-<!--            <MenuItem text="subscribe" onAction="#openSubscribeScreen"/>-->
-<!--        </Menu>-->
-<!--    </MenuBar>-->
-    <HBox>
-        <padding>
-            <Insets top="20.0"  right="20.0"/>
-        </padding>
-        <Button fx:id="pButton" text="publish" disable="true" onAction="#openPublishScreen"/>
-        <Label prefWidth="10"/>
-        <Button fx:id="sButton" text="subscribe" disable="true" onAction="#openSubscribeScreen"/>
-    </HBox>
-
-<!--    <Label text="Connect to broker" fx:id="title"/>-->
-    <HBox prefWidth="200" alignment="CENTER">
-        <Label text="Broker URL: "/>
-        <TextField text="test.mosquitto.org" fx:id="brokerAddress" prefHeight="25.0"
-                   style="-fx-prompt-text-fill:red;"/>
-    </HBox>
-    <HBox prefWidth="200" alignment="CENTER">
-        <Label text="Broker Port: "/>
-        <TextField text="1883" fx:id="port" prefHeight="25"/>
-    </HBox>
-    <HBox prefWidth="200" alignment="CENTER">
-        <Label text="User Name: "/>
-        <TextField prefHeight="25.0"/>
-    </HBox>
-    <HBox prefWidth="200" alignment="CENTER">
-        <Label text="Password: "/>
-        <TextField prefHeight="25.0"/>
-    </HBox>
-
-    <HBox alignment="CENTER" prefWidth="100" >
-        <padding>
-            <Insets left="60"/>
-        </padding>
-        <Button onAction="#connect"  text="Connect"
-                style="-fx-background-color: black;-fx-text-fill: white;"/>
-        <Label prefWidth="10"/>
-        <Button onAction="#disconnect" text="Disconnect" style="-fx-background-color: black;-fx-text-fill: white;"/>
-    </HBox>
+    <TabPane prefWidth="400" prefHeight="500" >
+        <Tab text="Connect"  closable="false" >
+            <fx:include  source="mqtt-connect.fxml"/>
+        </Tab>
+        <Tab text="Publish"  closable="false">
+          <fx:include source="mqtt-publisher.fxml"/>
+        </Tab>
+        <Tab text="Subscribe"  closable="false">
+                <fx:include source="mqtt-subscriber.fxml"/>
+        </Tab>
+    </TabPane>
 
 
 </VBox>

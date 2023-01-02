@@ -11,7 +11,7 @@ import org.eclipse.paho.mqttv5.common.packet.MqttProperties;
  * Created: 2023/01/01
  * email: tksrajan@gmail.com
  */
-public abstract class SubscriberBase implements MqttCallback {
+public abstract class SubscriberBase extends MQTTApplicationController implements MqttCallback {
     @Override
     public void disconnected(MqttDisconnectResponse mqttDisconnectResponse) {
 

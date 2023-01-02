@@ -9,7 +9,7 @@ import tksundar.mqtt.client.util.Commons;
 
 import java.util.logging.Logger;
 
-import static tksundar.mqtt.client.MQTTApplicationController.getClient;
+import static tksundar.mqtt.client.ConnectionController.getClient;
 
 /**
  * Author : Sundar Krishnamachari
@@ -32,6 +32,7 @@ public class Subscriber extends SubscriberBase {
 
     @FXML
     public void subscribe() throws MqttException {
+        if(hasConnectWarning())return;
         LOGGER.info("subscribing to topic " + topic.getText() + "\n");
         getClient().subscribe(topic.getText(), 0);
         copy = received;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="tksundar.mqtt.client.ConnectionController"
+            prefHeight="400.0" prefWidth="600.0">
+
+        <padding>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20"/>
+        </padding>
+        <!--                <HBox>-->
+        <!--                    <Button fx:id="pButton" text="publish" disable="true" onAction="#openPublishScreen"/>-->
+        <!--                    <Label prefWidth="10"/>-->
+        <!--                    <Button fx:id="sButton" text="subscribe" disable="true" onAction="#openSubscribeScreen"/>-->
+        <!--                </HBox>-->
+
+        <!--    <Label text="Connect to broker" fx:id="title"/>-->
+        <HBox prefWidth="200" alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
+            </padding>
+            <Label text="Broker URL: "/>
+            <TextField text="test.mosquitto.org" fx:id="brokerAddress" prefHeight="25.0"
+                       style="-fx-prompt-text-fill:red;"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
+            </padding>
+            <Label text="Broker Port: "/>
+            <TextField text="1883" fx:id="port" prefHeight="25"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
+            </padding>
+            <Label text="User Name: "/>
+            <TextField prefHeight="25.0"/>
+        </HBox>
+        <HBox prefWidth="200" alignment="CENTER">
+            <padding>
+                <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
+            </padding>
+            <Label text="Password: "/>
+            <TextField prefHeight="25.0"/>
+        </HBox>
+
+        <HBox alignment="CENTER" prefWidth="100">
+            <padding>
+                <Insets left="60" top="20"/>
+            </padding>
+            <Button onAction="#connect" text="Connect"
+                    style="-fx-background-color: black;-fx-text-fill: white;"/>
+            <Label prefWidth="10"/>
+            <Button onAction="#disconnect" text="Disconnect"
+                    style="-fx-background-color: black;-fx-text-fill: white;"/>
+        </HBox>
+    </VBox>
+
