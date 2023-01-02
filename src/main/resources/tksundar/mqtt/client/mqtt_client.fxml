@@ -10,13 +10,22 @@
         <Insets bottom="20.0" left="20.0" right="20.0"/>
     </padding>
 
-    <MenuBar>
-        <Menu text="Choose Action" disable="true" fx:id="choose">
-            <MenuItem text="publish" onAction="#openPublishScreen"/>
-            <MenuItem text="subscribe" onAction="#openSubscribeScreen"/>
-        </Menu>
-    </MenuBar>
-    <Label text="Connect to broker" fx:id="title"/>
+<!--    <MenuBar>-->
+<!--        <Menu text="Choose Action" disable="true" fx:id="choose">-->
+<!--            <MenuItem text="publish" onAction="#openPublishScreen"/>-->
+<!--            <MenuItem text="subscribe" onAction="#openSubscribeScreen"/>-->
+<!--        </Menu>-->
+<!--    </MenuBar>-->
+    <HBox alignment="TOP_LEFT">
+        <padding>
+            <Insets top="20.0"  right="20.0"/>
+        </padding>
+        <Button fx:id="pButton" text="publish" disable="true" onAction="#openPublishScreen"/>
+        <Label prefWidth="10"/>
+        <Button fx:id="sButton" text="subscribe" disable="true" onAction="#openSubscribeScreen"/>
+    </HBox>
+
+<!--    <Label text="Connect to broker" fx:id="title"/>-->
     <HBox prefWidth="200" alignment="CENTER">
         <Label text="Broker URL: "/>
         <TextField text="test.mosquitto.org" fx:id="brokerAddress" prefHeight="25.0"

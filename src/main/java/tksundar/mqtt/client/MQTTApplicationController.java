@@ -3,8 +3,8 @@ package tksundar.mqtt.client;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
@@ -37,10 +37,10 @@ public class MQTTApplicationController {
             LoggerType.CONSOLE);
 
     @FXML
-    private Label title;
+    private Button pButton;
 
     @FXML
-    private Menu choose;
+    private  Button sButton;
 
     @FXML
     private TextField brokerAddress;
@@ -64,12 +64,15 @@ public class MQTTApplicationController {
 
     @FXML
     protected void disconnect()  {
-       doDisconnect();
+        pButton.setDisable(true);
+        sButton.setDisable(true);
+        doDisconnect();
     }
 
     public void connect(String url) {
         if(client!=null){
             LOGGER.info("Already connected");
+            createConnectedAlertWithOK().show();
             return;
         }
         try {
@@ -77,9 +80,9 @@ public class MQTTApplicationController {
             client.setCallback(new Subscriber());
             client.connect();
             LOGGER.info(format("Connected to broker %s",url));
-            choose.setDisable(false);
+            pButton.setDisable(false);
             //connectButton.setDisable(true);
-            title.setText("Connected");
+            sButton.setDisable(false);
 
         } catch (MqttException e) {
            LOGGER.throwing(MQTTApplicationController.class.getName(),
@@ -138,5 +141,14 @@ public class MQTTApplicationController {
             client = null;
 
         }
+    }
+
+    private Alert createConnectedAlertWithOK(){
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            //alert.setOnCloseRequest(dialogEvent -> alert.close());
+            alert.setTitle("Connection Status");
+            alert.setContentText("Already Connected");
+            LOGGER.info(alert.toString());
+            return alert;
     }
 }
