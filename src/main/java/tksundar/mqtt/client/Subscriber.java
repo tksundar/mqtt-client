@@ -32,7 +32,6 @@ public class Subscriber extends SubscriberBase {
 
     @FXML
     public void subscribe() throws MqttException {
-        if(hasConnectWarning())return;
         LOGGER.info("subscribing to topic " + topic.getText() + "\n");
         getClient().subscribe(topic.getText(), 0);
         copy = received;

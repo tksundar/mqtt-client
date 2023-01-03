@@ -61,8 +61,7 @@ public class ConnectionController extends MQTTApplicationController {
 
     public void connect(String url) {
         if (client != null) {
-            LOGGER.info("Already connected");
-            createConnectedAlertWithOK().show();
+            createConnectedAlertWithOK();
             return;
         }
         try {
@@ -78,6 +77,13 @@ public class ConnectionController extends MQTTApplicationController {
                     "connect", new RuntimeException(e));
 
         }
+    }
+
+    private void createConnectedAlertWithOK() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Already Connected");
+        alert.setContentText("Broker already connected.To connect to a different broker, disconnect first");
+        alert.show();
     }
 
 
@@ -111,14 +117,14 @@ public class ConnectionController extends MQTTApplicationController {
 
         }
     }
-
-    private Alert createConnectedAlertWithOK() {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        //alert.setOnCloseRequest(dialogEvent -> alert.close());
-        alert.setTitle("Connection Status");
-        alert.setContentText("Already Connected");
-        LOGGER.info(alert.toString());
-        return alert;
-    }
+//
+//    private Alert createConnectedAlertWithOK() {
+//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+//        //alert.setOnCloseRequest(dialogEvent -> alert.close());
+//        alert.setTitle("Connection Status");
+//        alert.setContentText("Already Connected");
+//        LOGGER.info(alert.toString());
+//        return alert;
+//    }
 }
 
