@@ -3,6 +3,8 @@ package tksundar.mqtt.client;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
@@ -21,14 +23,34 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
 public class MQTTApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt_client.fxml"));
-        VBox content = fxmlLoader.load();
-        Scene scene = new Scene(content);
-        stage.setTitle("mqtt client");
-        stage.setScene(scene);
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> closeWindowAndExit());
-        stage.show();
 
+        TabPane tabPane = new TabPane();
+
+        Tab connectTab = new Tab("Connect",
+                new FXMLLoader(MQTTApplication.class.getResource("mqtt-connect.fxml")).load());
+
+        Tab publishTab = new Tab("Publish",
+                new FXMLLoader(MQTTApplication.class.getResource("mqtt-publisher.fxml")).load());
+        publishTab.setDisable(true);
+
+        Tab subscribeTab = new Tab("Subscribe",
+                new FXMLLoader(MQTTApplication.class.getResource("mqtt-subscriber.fxml")).load());
+        subscribeTab.setDisable(true);
+
+        tabPane.getTabs().add(connectTab);
+        tabPane.getTabs().add(publishTab);
+        tabPane.getTabs().add(subscribeTab);
+
+        MQTTApplicationController.setTabs(publishTab,subscribeTab);
+
+        VBox vBox = new VBox(tabPane);
+        Scene scene = new Scene(vBox);
+
+        stage.setScene(scene);
+        stage.setTitle("mqtt-client");
+
+        stage.show();
     }
 
     private static void closeWindowAndExit(){

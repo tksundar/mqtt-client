@@ -22,7 +22,7 @@ import static tksundar.mqtt.client.util.Commons.getLogger;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class ConnectionController {
+public class ConnectionController extends MQTTApplicationController {
 
     private static final String clientId = getMacAddress();
 
@@ -55,8 +55,9 @@ public class ConnectionController {
     @FXML
     protected void disconnect() {
         doDisconnect();
+        publishTab.setDisable(true);
+        subscribeTab.setDisable(true);
     }
-
 
     public void connect(String url) {
         if (client != null) {
@@ -69,6 +70,8 @@ public class ConnectionController {
             client.setCallback(new Subscriber());
             client.connect();
             LOGGER.info(format("Connected to broker %s", url));
+            publishTab.setDisable(false);
+            subscribeTab.setDisable(false);
 
         } catch (MqttException e) {
             LOGGER.throwing(ConnectionController.class.getName(),
@@ -95,27 +98,6 @@ public class ConnectionController {
 
     }
 
-
-/*    @FXML
-    public void openPublishScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt-publisher.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 500);
-        Stage stage = new Stage();
-        stage.setTitle("Publish");
-        stage.setScene(scene);
-        stage.show();
-
-    }*/
-
- /*   @FXML
-    public void openSubscribeScreen() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(MQTTApplication.class.getResource("mqtt-subscriber.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 300, 500);
-        Stage stage = new Stage();
-        stage.setTitle("Subscribe");
-        stage.setScene(scene);
-        stage.show();
-    }*/
 
     public static void doDisconnect() {
         if (client != null && client.isConnected()) {
