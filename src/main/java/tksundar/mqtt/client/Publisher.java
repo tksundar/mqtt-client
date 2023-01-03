@@ -1,9 +1,8 @@
 package tksundar.mqtt.client;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
-import javafx.scene.text.Text;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
 import tksundar.mqtt.client.util.Commons;
@@ -20,8 +19,9 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
 public class Publisher extends MQTTApplicationController {
     private final Logger LOGGER = Commons.getLogger(Publisher.class.getName(),
             Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
+
     @FXML
-    private ScrollPane published;
+    private TextArea published;
 
     @FXML
     private TextField topic;
@@ -36,7 +36,7 @@ public class Publisher extends MQTTApplicationController {
         LOGGER.info("publishing to topic " + topic.getText() + " message " + message.getText());
         getClient().publish(topic.getText(), new MqttMessage(message.getText().getBytes()));
         buffer.append(topic.getText()).append(" | ").append(message.getText()).append("\n");
-        published.setContent(new Text(buffer.toString()));
+        published.setText(buffer.toString());
     }
 
 }

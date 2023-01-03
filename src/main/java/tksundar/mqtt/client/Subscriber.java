@@ -24,17 +24,20 @@ public class Subscriber extends SubscriberBase {
     @FXML
     private TextField topic;
 
-    @FXML
-    private TextArea received;
 
-    private final StringBuffer buffer = new StringBuffer();
+    @FXML
+    private TextArea textArea;
+
+
+    private static final StringBuffer buffer = new StringBuffer();
 
 
     @FXML
     public void subscribe() throws MqttException {
         LOGGER.info("subscribing to topic " + topic.getText() + "\n");
         getClient().subscribe(topic.getText(), 0);
-        copy = received;
+        copy = textArea;
+
     }
 
     @Override
@@ -43,6 +46,8 @@ public class Subscriber extends SubscriberBase {
         LOGGER.info(String.format("\nReceived message %s on Topic %s", msg, s));
         buffer.append(msg).append("\n");
         copy.setText(buffer.toString());
+
     }
+
 
 }

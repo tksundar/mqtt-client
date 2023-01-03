@@ -16,7 +16,7 @@
     <Button text="Publish"  onAction="#publish"
             style="-fx-background-color: black;-fx-text-fill: white;"/>
     <VBox alignment="CENTER_LEFT">
-    <Label  text="Published Messages(Topic|Message):" style="-fx-font-weight:bold"/>
-    <ScrollPane fx:id="published" prefHeight="100"/>
+    <Label  text="Published Messages(Topic|Message):" style="-fx-background-color: black;-fx-text-fill: white;-fx-font-weight:bold"/>
+    <TextArea fx:id="published" prefHeight="100" style="-fx-text-fill: blue"/>
     </VBox>
 </VBox>
