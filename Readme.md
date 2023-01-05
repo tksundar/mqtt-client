@@ -29,3 +29,7 @@ Publisher Screen
 <p><img src="/images/publish.png?raw=true"/></p>
 Subscriber screen
 <p><img src="/images/subscribe.png?raw=true"/></p>
+Duplicate Connection Attempt Alert
+<p><img src="/images/duplicate_conn.png?raw=true"/></p>
+
+
