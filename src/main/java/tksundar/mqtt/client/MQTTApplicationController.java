@@ -13,7 +13,7 @@ public class MQTTApplicationController {
     protected static Tab subscribeTab;
 
 
-    public static void setTabs(Tab publishTab, Tab subscribeTab){
+    public static void setTabs(Tab publishTab, Tab subscribeTab) {
         MQTTApplicationController.subscribeTab = subscribeTab;
         MQTTApplicationController.publishTab = publishTab;
     }

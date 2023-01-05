@@ -70,9 +70,10 @@ public class Commons {
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
-                        break;
+                    break;
                 }
-                default: COMMONS_LOGGER.warning("Unexpected value: " + type);
+                default:
+                    COMMONS_LOGGER.warning("Unexpected value: " + type);
             }
         }
         return logger;

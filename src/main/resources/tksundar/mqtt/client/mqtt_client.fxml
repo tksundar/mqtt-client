@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.VBox?>
 <VBox alignment="TOP_CENTER" prefHeight="300" prefWidth="400" spacing="20.0"
       xmlns:fx="http://javafx.com/fxml/1"
-      xmlns="http://javafx.com/javafx/8" fx:controller="tksundar.mqtt.client.MQTTApplicationController" >
+      xmlns="http://javafx.com/javafx/8" fx:controller="tksundar.mqtt.client.MQTTApplicationController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0"/>
     </padding>
-    <TabPane prefWidth="400" prefHeight="500" >
-        <Tab text="Connect"  closable="false" >
-            <fx:include  source="mqtt-connect.fxml"/>
+    <TabPane prefWidth="400" prefHeight="500">
+        <Tab text="Connect" closable="false">
+            <fx:include source="mqtt-connect.fxml"/>
         </Tab>
-        <Tab text="Publish"  closable="false">
-          <fx:include source="mqtt-publisher.fxml"/>
+        <Tab text="Publish" closable="false">
+            <fx:include source="mqtt-publisher.fxml"/>
         </Tab>
-        <Tab text="Subscribe"  closable="false">
-                <fx:include source="mqtt-subscriber.fxml"/>
+        <Tab text="Subscribe" closable="false">
+            <fx:include source="mqtt-subscriber.fxml"/>
         </Tab>
     </TabPane>
 

@@ -3,6 +3,7 @@ module tksundar.mqtt.client {
     requires javafx.fxml;
     requires org.eclipse.paho.mqttv5.client;
     requires java.logging;
+    requires org.kordamp.bootstrapfx.core;
 
     opens tksundar.mqtt.client to javafx.fxml;
     exports tksundar.mqtt.client;

@@ -15,9 +15,9 @@
 
     <TextField fx:id="topic" text="Topic" prefWidth="100.0"/>
 
-    <Button text="Subscribe" onAction="#subscribe" style="-fx-background-color: black;-fx-text-fill: white;"/>
+    <Button id="sub" text="Subscribe" onAction="#subscribe"/>
     <VBox alignment="CENTER_LEFT" prefWidth="100">
-        <Label  text="Received Messages:" style="-fx-background-color: black;-fx-text-fill: white;-fx-font-weight:bold"/>
+        <Label text="Received Messages:" style="-fx-background-color: black;-fx-text-fill: white;-fx-font-weight:bold"/>
         <TextArea fx:id="textArea" prefHeight="100" style=";-fx-text-fill: blue;"/>
     </VBox>
 </VBox>
