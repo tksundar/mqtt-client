@@ -3,6 +3,7 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
 <VBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
       fx:controller="tksundar.mqtt.client.ConnectionController"
@@ -22,7 +23,8 @@
         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
         </padding>
-        <Label text="Broker URL: "/>
+        <Label text="Broker URL" style="-fx-font-weight:bold"/>
+        <Text text="  "/>
         <TextField text="test.mosquitto.org" fx:id="brokerAddress" prefHeight="25.0"
                    style="-fx-prompt-text-fill:red;"/>
     </HBox>
@@ -30,25 +32,28 @@
         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
         </padding>
-        <Label text="Broker Port: "/>
+        <Label text="Broker Port" style="-fx-font-weight:bold"/>
+        <Text text="  "/>
         <TextField text="1883" fx:id="port" prefHeight="25"/>
     </HBox>
     <HBox prefWidth="200" alignment="CENTER">
         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
         </padding>
-        <Label text="User Name: "/>
+        <Label text="User Name" style="-fx-font-weight:bold"/>
+        <Text text="  "/>
         <TextField prefHeight="25.0"/>
     </HBox>
     <HBox prefWidth="200" alignment="CENTER">
         <padding>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10"/>
         </padding>
-        <Label text="Password: "/>
-        <TextField prefHeight="25.0"/>
+        <Label text="Password" style="-fx-font-weight:bold"/>
+        <Text text="    "/>
+        <PasswordField prefHeight="25.0"/>
     </HBox>
 
-    <HBox id="buttonBox" alignment="CENTER" prefWidth="100">
+    <HBox alignment="CENTER" prefWidth="100">
         <padding>
             <Insets left="60" top="20"/>
         </padding>

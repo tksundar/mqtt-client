@@ -24,7 +24,12 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
  * email: tksrajan@gmail.com
  */
 public class MQTTApplication extends Application {
-    private static final String[] styles = {"btn btn-lg", "btn-primary"};
+    private static final String[] STYLES_PRIMARY = {"btn btn-xs", "btn-primary"};
+    private static final String[] STYLES_OTHER = {"btn btn-xs", "btn-danger"};
+    private static final String CONNECT_BUTTON = "connect";
+    private static final String DISCONNECT_BUTTON = "disconnect";
+    private static final String PUBLISH_BUTTON = "publish";
+    private static final String SUBSCRIBE_BUTTON = "subscribe";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -33,17 +38,17 @@ public class MQTTApplication extends Application {
         TabPane tabPane = new TabPane();
 
         VBox box = new FXMLLoader(MQTTApplication.class.getResource("mqtt-connect.fxml")).load();
-        addStyles(box, "connect", styles);
-        addStyles(box, "disconnect", styles);
+        addStyles(box, CONNECT_BUTTON, STYLES_PRIMARY);
+        addStyles(box, DISCONNECT_BUTTON, STYLES_OTHER);
         Tab connectTab = new Tab("Connect", box);
 
         box = new FXMLLoader(MQTTApplication.class.getResource("mqtt-publisher.fxml")).load();
-        addStyles(box, "pub", styles);
+        addStyles(box, PUBLISH_BUTTON, STYLES_PRIMARY);
         Tab publishTab = new Tab("Publish", box);
         publishTab.setDisable(true);
 
         box = new FXMLLoader(MQTTApplication.class.getResource("mqtt-subscriber.fxml")).load();
-        addStyles(box, "sub", styles);
+        addStyles(box, SUBSCRIBE_BUTTON, STYLES_PRIMARY);
         Tab subscribeTab = new Tab("Subscribe", box);
         subscribeTab.setDisable(true);
 
@@ -54,7 +59,7 @@ public class MQTTApplication extends Application {
         MQTTApplicationController.setTabs(publishTab, subscribeTab);
 
         VBox vBox = new VBox(tabPane);
-        Scene scene = new Scene(vBox);
+        Scene scene = new Scene(vBox, 500, 312);
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
 
         stage.setScene(scene);

@@ -13,7 +13,7 @@
     <TextField fx:id="topic" text="Topic" prefWidth="150"/>
     <TextField text="Message" prefWidth="200" fx:id="message"/>
 
-    <Button id="pub" text="Publish" onAction="#publish"/>
+    <Button id="publish" text="Publish" onAction="#publish"/>
     <VBox alignment="CENTER_LEFT">
         <Label text="Published Messages(Topic|Message):"
                style="-fx-background-color: black;-fx-text-fill: white;-fx-font-weight:bold"/>
