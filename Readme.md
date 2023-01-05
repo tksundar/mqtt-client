@@ -19,11 +19,13 @@ I have used bootstrapFx library from org.kordamp.bootstrapfx. They have proted p
 The code uses FXML binding wherever convenient. The primary stage however is created programatically to better control
 the Tab state
 
-**Opening Screen**
+**Screens**
+
+Opening Screen
 <p><img src="/images/main.png?raw=true"/></p>
-**After Broker Connected**
+After Broker Connected
 <p><img src="/images/main_connected.png?raw=true"/></p>
-**Publisher Screen**
-<p><img src="/images/publish?raw=true"/></p>
-**Subscriber screen**
+Publisher Screen
+<p><img src="/images/publish.png?raw=true"/></p>
+Subscriber screen
 <p><img src="/images/subscribe.png?raw=true"/></p>
