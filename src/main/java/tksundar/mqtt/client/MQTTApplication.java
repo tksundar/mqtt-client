@@ -30,6 +30,8 @@ public class MQTTApplication extends Application {
     private static final String DISCONNECT_BUTTON = "disconnect";
     private static final String PUBLISH_BUTTON = "publish";
     private static final String SUBSCRIBE_BUTTON = "subscribe";
+    private static final String TITLE = "mqtt-client";
+    private static final String HASH = "#";
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -63,14 +65,14 @@ public class MQTTApplication extends Application {
         scene.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
 
         stage.setScene(scene);
-        stage.setTitle("mqtt-client");
+        stage.setTitle(TITLE);
 
         stage.show();
     }
 
     private void addStyles(Node container, String id, String... styles) {
-        if (!id.startsWith("#")) {// This is critical for lookup :-)
-            id = "#" + id;
+        if (!id.startsWith(HASH)) {// This is critical for lookup :-)
+            id = HASH + id;
         }
         Node node = container.lookup(id);
         if (node != null) {
