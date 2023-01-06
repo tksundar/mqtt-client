@@ -7,10 +7,6 @@ import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.client.MqttClient;
 import org.eclipse.paho.mqttv5.common.MqttException;
 
-import java.net.InetAddress;
-import java.net.NetworkInterface;
-import java.net.SocketException;
-import java.net.UnknownHostException;
 import java.util.logging.Logger;
 
 import static java.lang.String.format;
@@ -24,7 +20,7 @@ import static tksundar.mqtt.client.util.Commons.getLogger;
  */
 public class ConnectionController extends MQTTApplicationController {
 
-    private static final String clientId = getMacAddress();
+    private static final String clientId = "DESKTOP-SUH6DBG";
 
     private static IMqttClient client;
 
@@ -86,23 +82,23 @@ public class ConnectionController extends MQTTApplicationController {
         alert.show();
     }
 
-
-    private static String getMacAddress() {
-        byte[] hardwareAddress;
-        try {
-            InetAddress localHost = InetAddress.getLocalHost();
-            NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
-            hardwareAddress = ni.getHardwareAddress();
-        } catch (UnknownHostException | SocketException e) {
-            throw new RuntimeException(e);
-        }
-        String[] hexadecimal = new String[hardwareAddress.length];
-        for (int i = 0; i < hardwareAddress.length; i++) {
-            hexadecimal[i] = String.format("%02X", hardwareAddress[i]);
-        }
-        return String.join("-", hexadecimal);
-
-    }
+//
+//    private static String getMacAddress() {
+//        byte[] hardwareAddress;
+//        try {
+//            InetAddress localHost = InetAddress.getLocalHost();
+//            NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
+//            hardwareAddress = ni.getHardwareAddress();
+//        } catch (UnknownHostException | SocketException e) {
+//            throw new RuntimeException(e);
+//        }
+//        String[] hexadecimal = new String[hardwareAddress.length];
+//        for (int i = 0; i < hardwareAddress.length; i++) {
+//            hexadecimal[i] = String.format("%02X", hardwareAddress[i]);
+//        }
+//        return String.join("-", hexadecimal);
+//
+//    }
 
 
     public static void doDisconnect() {
