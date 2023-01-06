@@ -5,9 +5,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
-import tksundar.mqtt.client.util.Commons;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static tksundar.mqtt.client.ConnectionController.getClient;
 
@@ -17,8 +16,8 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
  * email: tksrajan@gmail.com
  */
 public class Subscriber extends SubscriberBase {
-    private final Logger LOGGER = Commons.getLogger(Subscriber.class.getName(),
-            Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Subscriber.class.getSimpleName());
     private static TextArea copy;
 
     @FXML
@@ -43,7 +42,7 @@ public class Subscriber extends SubscriberBase {
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
         String msg = mqttMessage.toString();
-        LOGGER.info(String.format("\nReceived message %s on Topic %s", msg, s));
+        LOGGER.info(String.format("Received message %s on Topic %s", msg, s));
         buffer.append(msg).append("\n");
         copy.setText(buffer.toString());
 

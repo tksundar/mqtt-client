@@ -6,12 +6,10 @@ import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.client.MqttClient;
 import org.eclipse.paho.mqttv5.common.MqttException;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static java.lang.String.format;
-import static tksundar.mqtt.client.util.Commons.LoggerType;
-import static tksundar.mqtt.client.util.Commons.getLogger;
 
 /**
  * Author : Sundar Krishnamachari
@@ -24,8 +22,7 @@ public class ConnectionController extends MQTTApplicationController {
 
     private static IMqttClient client;
 
-    private static final Logger LOGGER = getLogger(ConnectionController.class.getName(),
-            LoggerType.CONSOLE);
+    private static final Logger  LOGGER = LoggerFactory.getLogger(ConnectionController.class.getSimpleName());
 
 
     @FXML
@@ -69,7 +66,7 @@ public class ConnectionController extends MQTTApplicationController {
             subscribeTab.setDisable(false);
 
         } catch (MqttException e) {
-            LOGGER.throwing(ConnectionController.class.getName(),
+            LOGGER.error(ConnectionController.class.getName(),
                     "connect", new RuntimeException(e));
 
         }
@@ -81,25 +78,6 @@ public class ConnectionController extends MQTTApplicationController {
         alert.setContentText("Broker already connected.To connect to a different broker, disconnect first");
         alert.show();
     }
-
-//
-//    private static String getMacAddress() {
-//        byte[] hardwareAddress;
-//        try {
-//            InetAddress localHost = InetAddress.getLocalHost();
-//            NetworkInterface ni = NetworkInterface.getByInetAddress(localHost);
-//            hardwareAddress = ni.getHardwareAddress();
-//        } catch (UnknownHostException | SocketException e) {
-//            throw new RuntimeException(e);
-//        }
-//        String[] hexadecimal = new String[hardwareAddress.length];
-//        for (int i = 0; i < hardwareAddress.length; i++) {
-//            hexadecimal[i] = String.format("%02X", hardwareAddress[i]);
-//        }
-//        return String.join("-", hexadecimal);
-//
-//    }
-
 
     public static void doDisconnect() {
         if (client != null && client.isConnected()) {
@@ -113,14 +91,5 @@ public class ConnectionController extends MQTTApplicationController {
 
         }
     }
-//
-//    private Alert createConnectedAlertWithOK() {
-//        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-//        //alert.setOnCloseRequest(dialogEvent -> alert.close());
-//        alert.setTitle("Connection Status");
-//        alert.setContentText("Already Connected");
-//        LOGGER.info(alert.toString());
-//        return alert;
-//    }
 }
 

@@ -11,6 +11,8 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.kordamp.bootstrapfx.BootstrapFX;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -33,8 +35,11 @@ public class MQTTApplication extends Application {
     private static final String TITLE = "mqtt-client";
     private static final String HASH = "#";
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(MQTTApplication.class.getSimpleName());
+
     @Override
     public void start(Stage stage) throws IOException {
+        LOGGER.info("Starting mqtt-client...");
         stage.addEventHandler(WindowEvent.WINDOW_CLOSE_REQUEST, windowEvent -> closeWindowAndExit());
 
         TabPane tabPane = new TabPane();

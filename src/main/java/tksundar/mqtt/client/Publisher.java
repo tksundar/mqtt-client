@@ -5,9 +5,8 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.eclipse.paho.mqttv5.common.MqttMessage;
-import tksundar.mqtt.client.util.Commons;
-
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import static tksundar.mqtt.client.ConnectionController.getClient;
 
@@ -17,8 +16,8 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
  * email: tksrajan@gmail.com
  */
 public class Publisher extends MQTTApplicationController {
-    private final Logger LOGGER = Commons.getLogger(Publisher.class.getName(),
-            Commons.LoggerType.FILE, Commons.LoggerType.CONSOLE);
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(Publisher.class.getSimpleName());
 
     @FXML
     private TextArea published;
