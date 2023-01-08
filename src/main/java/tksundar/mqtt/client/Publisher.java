@@ -15,7 +15,7 @@ import static tksundar.mqtt.client.ConnectionController.getClient;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class Publisher extends MQTTApplicationController {
+public class Publisher {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Publisher.class.getSimpleName());
 

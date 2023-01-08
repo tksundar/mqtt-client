@@ -2,6 +2,7 @@ package tksundar.mqtt.client;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TextField;
 import org.eclipse.paho.mqttv5.client.IMqttClient;
 import org.eclipse.paho.mqttv5.client.MqttClient;
@@ -16,7 +17,11 @@ import static java.lang.String.format;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class ConnectionController extends MQTTApplicationController {
+public class ConnectionController {
+
+    private static Tab publishTab;
+
+    private static Tab subscribeTab;
 
     private static final String clientId = "DESKTOP-SUH6DBG";
 
@@ -90,6 +95,11 @@ public class ConnectionController extends MQTTApplicationController {
             client = null;
 
         }
+    }
+
+    public static void setTabs(Tab publishTab, Tab subscribeTab) {
+        ConnectionController.subscribeTab = subscribeTab;
+        ConnectionController.publishTab = publishTab;
     }
 }
 

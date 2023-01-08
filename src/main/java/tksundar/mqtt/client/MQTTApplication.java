@@ -17,8 +17,7 @@ import org.slf4j.LoggerFactory;
 import java.io.IOException;
 import java.util.Arrays;
 
-import static tksundar.mqtt.client.ConnectionController.doDisconnect;
-import static tksundar.mqtt.client.ConnectionController.getClient;
+import static tksundar.mqtt.client.ConnectionController.*;
 
 /**
  * Author : Sundar Krishnamachari
@@ -63,7 +62,7 @@ public class MQTTApplication extends Application {
         tabPane.getTabs().add(publishTab);
         tabPane.getTabs().add(subscribeTab);
 
-        MQTTApplicationController.setTabs(publishTab, subscribeTab);
+        setTabs(publishTab, subscribeTab);
 
         VBox vBox = new VBox(tabPane);
         Scene scene = new Scene(vBox, 500, 312);
