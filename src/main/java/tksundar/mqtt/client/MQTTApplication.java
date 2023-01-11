@@ -31,6 +31,7 @@ public class MQTTApplication extends Application {
     private static final String DISCONNECT_BUTTON = "disconnect";
     private static final String PUBLISH_BUTTON = "publish";
     private static final String SUBSCRIBE_BUTTON = "subscribe";
+    private static final String CLEAR_BUTTON = "clear";
     private static final String TITLE = "mqtt-client";
     private static final String HASH = "#";
 
@@ -55,6 +56,7 @@ public class MQTTApplication extends Application {
 
         box = new FXMLLoader(MQTTApplication.class.getResource("mqtt-subscriber.fxml")).load();
         addStyles(box, SUBSCRIBE_BUTTON, STYLES_PRIMARY);
+        addStyles(box, CLEAR_BUTTON, STYLES_OTHER);
         Tab subscribeTab = new Tab("Subscribe", box);
         subscribeTab.setDisable(true);
 

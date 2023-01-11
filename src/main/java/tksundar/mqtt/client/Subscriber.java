@@ -38,12 +38,16 @@ public class Subscriber extends SubscriberBase {
         copy = textArea;
 
     }
+    @FXML
+    public void clear(){
+        copy.clear();
+    }
 
     @Override
     public void messageArrived(String s, MqttMessage mqttMessage) {
         String msg = mqttMessage.toString();
         LOGGER.info(String.format("Received message %s on Topic %s", msg, s));
-        buffer.append(msg).append("\n");
+        buffer.append(s).append("|").append(msg).append("\n");
         copy.setText(buffer.toString());
 
     }

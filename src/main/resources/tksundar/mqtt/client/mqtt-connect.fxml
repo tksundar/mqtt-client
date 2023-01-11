@@ -25,7 +25,7 @@
         </padding>
         <Label text="Broker URL" style="-fx-font-weight:bold"/>
         <Text text="  "/>
-        <TextField text="test.mosquitto.org" fx:id="brokerAddress" prefHeight="25.0"
+        <TextField text="broker-cn.emqx.io" fx:id="brokerAddress" prefHeight="25.0"
                    style="-fx-prompt-text-fill:red;"/>
     </HBox>
     <HBox prefWidth="200" alignment="CENTER">
@@ -53,7 +53,7 @@
         <PasswordField prefHeight="25.0"/>
     </HBox>
 
-    <HBox alignment="CENTER" prefWidth="100">
+    <HBox alignment="CENTER" prefWidth="100" >
         <padding>
             <Insets left="60" top="20"/>
         </padding>
