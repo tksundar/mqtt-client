@@ -10,6 +10,9 @@ import org.eclipse.paho.mqttv5.common.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 import static java.lang.String.format;
 
 /**
@@ -22,8 +25,6 @@ public class ConnectionController {
     private static Tab publishTab;
 
     private static Tab subscribeTab;
-
-    private static final String clientId = "DESKTOP-SUH6DBG";
 
     private static IMqttClient client;
 
@@ -63,7 +64,7 @@ public class ConnectionController {
             return;
         }
         try {
-            client = new MqttClient(url, clientId);
+            client = new MqttClient(url, getHostName());
             client.setCallback(new Subscriber());
             client.connect();
             LOGGER.info(format("Connected to broker %s", url));
@@ -76,6 +77,20 @@ public class ConnectionController {
 
         }
     }
+
+    private String getHostName() {
+        InetAddress myHost = null;
+        String hostname;
+        try {
+            myHost = InetAddress.getLocalHost();
+            hostname = myHost.getHostName();
+        } catch (UnknownHostException e) {
+            LOGGER.warn("Exception resolving hostname. Defaulting to current time in millis");
+           hostname=String.valueOf(System.currentTimeMillis());
+        }
+        return hostname;
+    }
+
 
     private void createConnectedAlertWithOK() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
