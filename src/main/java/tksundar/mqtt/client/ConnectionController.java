@@ -79,7 +79,7 @@ public class ConnectionController {
     }
 
     private String getHostName() {
-        InetAddress myHost = null;
+        InetAddress myHost;
         String hostname;
         try {
             myHost = InetAddress.getLocalHost();
