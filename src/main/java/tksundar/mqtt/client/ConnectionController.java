@@ -9,6 +9,7 @@ import org.eclipse.paho.mqttv5.client.MqttClient;
 import org.eclipse.paho.mqttv5.common.MqttException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import tksundar.mqtt.client.api.Connect;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -20,7 +21,7 @@ import static java.lang.String.format;
  * Created: 2022/12/28
  * email: tksrajan@gmail.com
  */
-public class ConnectionController {
+public class ConnectionController implements Connect {
 
     private static Tab publishTab;
 
@@ -44,7 +45,7 @@ public class ConnectionController {
     }
 
     @FXML
-    protected void connect() {
+    public void connect() {
         String mqttAddress = brokerAddress.getText();
         String serverUrl = "tcp://" + mqttAddress + ":" + port.getText();
         connect(serverUrl);
@@ -52,7 +53,7 @@ public class ConnectionController {
 
 
     @FXML
-    protected void disconnect() {
+    public void disconnect() {
         doDisconnect();
         publishTab.setDisable(true);
         subscribeTab.setDisable(true);
